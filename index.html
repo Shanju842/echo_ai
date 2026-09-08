@@ -3,34 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#070908">
+<meta name="theme-color" content="#050705">
 <title>ECHO — Context-Aware AI Companion</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
-  --bg:#070908;
-  --panel:#0d110f;
-  --panel2:#111612;
+  --bg:#050705;
+  --surface:#0b0f0c;
+  --surface2:#101510;
+  --surface3:#151b16;
   --line:rgba(255,255,255,.08);
-  --text:#f2f5f1;
-  --muted:#89928b;
+  --text:#f3f7f2;
+  --muted:#879188;
   --green:#a8ff4d;
-  --green2:#c5ff8a;
-  --danger:#d58f8f;
+  --green2:#caff9a;
+  --red:#ff7777;
+  --yellow:#ffd76a;
+}
+
+html,body{
+  width:100%;
+  min-height:100%;
+  background:#020302;
 }
 
 body{
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:
-    radial-gradient(circle at 50% -10%,#1b291d 0,#080a09 38%,#030403 100%);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   color:var(--text);
-  min-height:100vh;
+  overflow-x:hidden;
 }
 
 button,input{
@@ -41,8 +50,11 @@ button{
   cursor:pointer;
 }
 
+a{
+  color:inherit;
+}
+
 .app{
-  width:100%;
   min-height:100vh;
   display:flex;
   justify-content:center;
@@ -50,10 +62,16 @@ button{
 
 .phone{
   width:100%;
-  max-width:520px;
+  max-width:540px;
   min-height:100vh;
   position:relative;
-  background:#080a09;
+  background:
+    radial-gradient(
+      circle at 50% -15%,
+      rgba(80,130,65,.24),
+      transparent 38%
+    ),
+    #070907;
   overflow:hidden;
 }
 
@@ -68,70 +86,82 @@ button{
   border-bottom:1px solid var(--line);
   position:sticky;
   top:0;
-  z-index:20;
-  background:rgba(8,10,9,.88);
-  backdrop-filter:blur(20px);
+  z-index:50;
+  background:rgba(7,9,7,.88);
+  backdrop-filter:blur(22px);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
-
-.logoMark{
-  width:30px;
-  height:30px;
-  border:1px solid var(--green);
-  color:var(--green);
-  border-radius:9px;
+  width:32px;
+  height:32px;
+  border-radius:10px;
+  border:1px solid rgba(168,255,77,.55);
   display:grid;
   place-items:center;
+  color:var(--green);
+  font-size:16px;
   font-weight:900;
+  box-shadow:0 0 22px rgba(168,255,77,.08);
 }
 
-.logoText{
-  font-weight:800;
+.brandName{
+  font-weight:900;
   letter-spacing:.18em;
   font-size:14px;
 }
 
-.logoSub{
-  display:block;
-  color:#657068;
+.brandSub{
+  color:#5f6a62;
   font-size:7px;
-  letter-spacing:.16em;
+  letter-spacing:.17em;
   margin-top:2px;
 }
 
-.mode{
-  border:1px solid rgba(168,255,77,.2);
+.status{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border:1px solid rgba(168,255,77,.18);
   background:rgba(168,255,77,.05);
   color:var(--green2);
-  border-radius:30px;
   padding:7px 11px;
+  border-radius:30px;
   font-size:9px;
   font-weight:800;
-  letter-spacing:.12em;
+  letter-spacing:.1em;
 }
 
-/* CONTENT */
+.statusDot{
+  width:6px;
+  height:6px;
+  background:var(--green);
+  border-radius:50%;
+  box-shadow:0 0 12px var(--green);
+}
+
+/* MAIN */
 
 .content{
   padding:30px 20px 110px;
 }
 
 .eyebrow{
-  color:#7f8981;
+  color:#657067;
   font-size:9px;
   font-weight:800;
-  letter-spacing:.16em;
+  letter-spacing:.18em;
 }
 
 .hero h1{
-  font-size:43px;
+  font-size:44px;
   line-height:.96;
-  letter-spacing:-.055em;
+  letter-spacing:-.06em;
   margin-top:12px;
 }
 
@@ -144,63 +174,93 @@ button{
   color:var(--muted);
   font-size:14px;
   line-height:1.55;
-  max-width:410px;
+  max-width:420px;
 }
 
-/* ECHO ORB */
+/* ORB */
 
 .orbArea{
   display:flex;
   justify-content:center;
-  padding:28px 0 20px;
+  padding:30px 0 23px;
 }
 
 .orb{
-  width:175px;
-  height:175px;
+  width:184px;
+  height:184px;
   border-radius:50%;
   position:relative;
   display:grid;
   place-items:center;
   background:
-    radial-gradient(circle,#203321 0,#101810 43%,#080b09 72%);
+    radial-gradient(
+      circle,
+      #253b25 0,
+      #142015 38%,
+      #090d09 72%
+    );
   border:1px solid rgba(168,255,77,.18);
   box-shadow:
-    0 0 70px rgba(168,255,77,.07),
-    inset 0 0 45px rgba(168,255,77,.05);
+    0 0 90px rgba(168,255,77,.06),
+    inset 0 0 55px rgba(168,255,77,.06);
+}
+
+.orb:before,
+.orb:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(168,255,77,.15);
 }
 
 .orb:before{
-  content:"";
-  position:absolute;
   inset:18px;
-  border:1px solid rgba(168,255,77,.16);
-  border-radius:50%;
-  animation:pulse 3s ease-in-out infinite;
+  animation:orbPulse 3s ease-in-out infinite;
+}
+
+.orb:after{
+  inset:38px;
+  border-color:rgba(168,255,77,.08);
+  animation:orbPulse 2.4s ease-in-out infinite reverse;
 }
 
 .orbCore{
-  width:55px;
-  height:55px;
+  width:52px;
+  height:52px;
   border-radius:50%;
   background:var(--green);
-  filter:blur(15px);
-  opacity:.5;
+  filter:blur(17px);
+  opacity:.58;
+  transition:.3s;
+}
+
+.orb.listening .orbCore{
+  transform:scale(1.35);
+  opacity:.9;
+}
+
+.orb.thinking .orbCore{
+  animation:thinking 1s infinite alternate;
 }
 
 .orbText{
   position:absolute;
-  bottom:25px;
+  bottom:26px;
+  color:#9aa69d;
   font-size:8px;
   letter-spacing:.2em;
-  color:#aeb8b0;
 }
 
-@keyframes pulse{
+@keyframes orbPulse{
   50%{
     transform:scale(1.08);
     opacity:.5;
   }
+}
+
+@keyframes thinking{
+  from{transform:scale(.8)}
+  to{transform:scale(1.4)}
 }
 
 /* QUICK ACTIONS */
@@ -212,26 +272,29 @@ button{
 }
 
 .quick button{
-  background:var(--panel);
   border:1px solid var(--line);
+  background:var(--surface);
+  color:#dce2dd;
   border-radius:15px;
-  padding:13px 7px;
-  color:#d9dfda;
+  padding:14px 7px;
   font-size:11px;
+  transition:.2s;
 }
 
 .quick button:hover{
-  border-color:rgba(168,255,77,.3);
+  transform:translateY(-1px);
+  border-color:rgba(168,255,77,.35);
+  background:var(--surface2);
 }
 
-/* CONVERSATION */
+/* CHAT */
 
 .contextTitle{
-  margin-top:28px;
-  margin-bottom:10px;
-  color:#667067;
+  margin-top:29px;
+  margin-bottom:11px;
+  color:#657067;
   font-size:9px;
-  letter-spacing:.16em;
+  letter-spacing:.17em;
 }
 
 .chat{
@@ -241,36 +304,48 @@ button{
 }
 
 .message{
-  max-width:85%;
+  max-width:87%;
   padding:12px 14px;
-  border-radius:15px;
+  border-radius:16px;
   font-size:13px;
-  line-height:1.45;
+  line-height:1.48;
+  animation:messageIn .2s ease;
 }
 
 .echo{
-  background:var(--panel2);
-  border:1px solid var(--line);
   align-self:flex-start;
+  background:var(--surface2);
+  border:1px solid var(--line);
 }
 
 .user{
+  align-self:flex-end;
   background:var(--green);
   color:#071006;
-  font-weight:650;
-  align-self:flex-end;
+  font-weight:700;
+}
+
+@keyframes messageIn{
+  from{
+    opacity:0;
+    transform:translateY(4px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
 
 /* COMPOSER */
 
 .composer{
+  margin-top:15px;
   display:flex;
   gap:7px;
-  margin-top:15px;
-  background:#0d100e;
-  border:1px solid var(--line);
   padding:7px;
-  border-radius:17px;
+  border:1px solid var(--line);
+  background:#0c100d;
+  border-radius:18px;
 }
 
 .composer input{
@@ -285,12 +360,12 @@ button{
 }
 
 .composer input::placeholder{
-  color:#59615c;
+  color:#586159;
 }
 
 .composer button{
-  width:39px;
-  height:39px;
+  width:40px;
+  height:40px;
   border-radius:12px;
   border:0;
 }
@@ -302,48 +377,59 @@ button{
 
 .send{
   background:var(--green);
-  color:#081007;
+  color:#071006;
+  font-weight:900;
 }
 
-/* MEMORY */
+/* CARDS */
 
 .section{
-  margin-top:26px;
+  margin-top:28px;
 }
 
 .sectionHeader{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  color:#687169;
+  color:#657067;
   font-size:9px;
-  letter-spacing:.14em;
+  letter-spacing:.16em;
 }
 
 .sectionHeader button{
   border:0;
   background:none;
   color:var(--green);
-  font-size:10px;
+  font-size:9px;
+  font-weight:800;
 }
 
 .memory{
-  margin-top:10px;
-  background:var(--panel);
+  margin-top:11px;
   border:1px solid var(--line);
-  border-radius:17px;
+  background:var(--surface);
+  border-radius:18px;
   overflow:hidden;
+  transition:.2s;
+}
+
+.memory:hover{
+  border-color:rgba(168,255,77,.2);
 }
 
 .memoryImage{
-  height:150px;
+  height:155px;
   background:
-    linear-gradient(135deg,#1b2a1c,#0b0f0c);
+    radial-gradient(
+      circle at 50% 40%,
+      #263d27,
+      #0b100c 70%
+    );
   display:grid;
   place-items:center;
   color:var(--green);
-  font-weight:800;
-  letter-spacing:.18em;
+  font-size:9px;
+  letter-spacing:.2em;
   overflow:hidden;
 }
 
@@ -359,183 +445,45 @@ button{
 
 .memoryTitle{
   font-size:15px;
-  font-weight:750;
+  font-weight:800;
 }
 
 .memoryDescription{
-  margin-top:5px;
-  color:#7e887f;
+  margin-top:6px;
+  color:#7f8981;
   font-size:11px;
   line-height:1.45;
 }
 
 .memoryMeta{
   margin-top:11px;
-  color:#687169;
+  color:#68736b;
   font-size:9px;
+  line-height:1.6;
 }
 
-.demoTag{
+.tag{
   display:inline-block;
   margin-left:7px;
-  color:var(--green);
-  background:rgba(168,255,77,.08);
-  padding:4px 6px;
+  padding:3px 6px;
   border-radius:20px;
+  background:rgba(168,255,77,.08);
+  color:var(--green);
   font-size:7px;
   letter-spacing:.1em;
-}
-
-/* BOTTOM NAV */
-
-.bottom{
-  position:fixed;
-  bottom:0;
-  width:min(520px,100%);
-  height:76px;
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  align-items:center;
-  background:rgba(8,10,9,.93);
-  border-top:1px solid var(--line);
-  backdrop-filter:blur(20px);
-  z-index:30;
-}
-
-.nav{
-  background:none;
-  border:0;
-  color:#687169;
-  font-size:8px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:5px;
-}
-
-.nav.active{
-  color:var(--green);
-}
-
-.cameraButton{
-  width:53px;
-  height:53px;
-  border-radius:17px;
-  border:0;
-  background:var(--green);
-  color:#071006;
-  justify-self:center;
-  font-size:22px;
-}
-
-/* CAMERA */
-
-.camera{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:#030403;
-  max-width:520px;
-  margin:auto;
-  overflow:hidden;
-}
-
-.camera video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.cameraOverlay{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(0,0,0,.6),transparent 25%,transparent 65%,rgba(0,0,0,.85));
-}
-
-.cameraTop{
-  position:absolute;
-  top:18px;
-  left:17px;
-  right:17px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.cameraTop button{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.15);
-  background:rgba(0,0,0,.35);
-  color:white;
-}
-
-.cameraTitle{
-  font-size:9px;
-  letter-spacing:.16em;
-}
-
-.scan{
-  position:absolute;
-  top:25%;
-  left:12%;
-  right:12%;
-  height:36%;
-  border:1px solid rgba(168,255,77,.35);
-  border-radius:18px;
-}
-
-.corner{
-  position:absolute;
-  width:25px;
-  height:25px;
-  border-color:var(--green);
-}
-
-.c1{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid}
-.c2{top:-1px;right:-1px;border-top:2px solid;border-right:2px solid}
-.c3{bottom:-1px;left:-1px;border-bottom:2px solid;border-left:2px solid}
-.c4{bottom:-1px;right:-1px;border-bottom:2px solid;border-right:2px solid}
-
-.cameraBottom{
-  position:absolute;
-  bottom:30px;
-  left:20px;
-  right:20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.cameraAction{
-  border:1px solid rgba(255,255,255,.18);
-  background:rgba(0,0,0,.4);
-  color:white;
-  border-radius:12px;
-  padding:11px 13px;
-  font-size:10px;
-}
-
-.shutter{
-  width:70px;
-  height:70px;
-  border-radius:50%;
-  border:5px solid rgba(255,255,255,.7);
-  background:var(--green);
 }
 
 /* PAGES */
 
 .pageTitle{
-  font-size:36px;
-  letter-spacing:-.05em;
-  margin-top:9px;
+  font-size:38px;
+  line-height:1;
+  letter-spacing:-.055em;
+  margin-top:10px;
 }
 
 .pageDescription{
-  margin-top:8px;
+  margin-top:9px;
   color:var(--muted);
   font-size:13px;
   line-height:1.5;
@@ -543,44 +491,62 @@ button{
 
 .card{
   margin-top:18px;
-  background:var(--panel);
   border:1px solid var(--line);
+  background:var(--surface);
   border-radius:19px;
   padding:17px;
 }
 
 .card h2{
-  font-size:20px;
+  font-size:19px;
 }
 
 .card p{
   margin-top:7px;
-  color:#858e87;
+  color:#7f8981;
   font-size:12px;
   line-height:1.5;
 }
 
 .primary{
   width:100%;
-  margin-top:16px;
-  padding:13px;
+  margin-top:15px;
   border:0;
-  border-radius:12px;
+  border-radius:13px;
   background:var(--green);
-  color:#081007;
-  font-size:12px;
-  font-weight:800;
+  color:#071006;
+  padding:13px;
+  font-size:11px;
+  font-weight:900;
 }
 
+.secondary{
+  width:100%;
+  margin-top:8px;
+  border:1px solid var(--line);
+  border-radius:13px;
+  background:var(--surface2);
+  color:#dbe2dc;
+  padding:12px;
+  font-size:11px;
+}
+
+/* RADAR */
+
 .radar{
-  height:230px;
-  border-radius:16px;
-  background:radial-gradient(circle,#18251a,#090d0a 65%);
-  display:grid;
-  place-items:center;
+  height:225px;
+  border-radius:17px;
   position:relative;
   overflow:hidden;
+  display:grid;
+  place-items:center;
   margin-bottom:20px;
+  background:
+    radial-gradient(
+      circle,
+      #18261a,
+      #080c09 67%
+    );
 }
 
 .radarCircle{
@@ -589,16 +555,30 @@ button{
   border-radius:50%;
 }
 
-.r1{width:110px;height:110px}
-.r2{width:190px;height:190px}
+.r1{
+  width:105px;
+  height:105px;
+}
+
+.r2{
+  width:180px;
+  height:180px;
+}
+
+.r3{
+  width:280px;
+  height:280px;
+}
 
 .radarDot{
-  width:8px;
-  height:8px;
-  background:var(--green);
+  width:9px;
+  height:9px;
   border-radius:50%;
-  box-shadow:0 0 20px var(--green);
+  background:var(--green);
+  box-shadow:0 0 25px var(--green);
 }
+
+/* SETTINGS */
 
 .setting{
   padding:16px 0;
@@ -614,62 +594,313 @@ button{
 }
 
 .setting p{
-  color:#727b74;
+  color:#707a72;
   font-size:10px;
   margin-top:5px;
 }
 
 .toggle{
   float:right;
-  width:44px;
-  height:24px;
+  width:45px;
+  height:25px;
   border:0;
   border-radius:20px;
-  background:#303630;
+  background:#303730;
+}
+
+.toggle span{
+  display:block;
+  width:19px;
+  height:19px;
+  margin:3px;
+  border-radius:50%;
+  background:#858d87;
+  transition:.2s;
 }
 
 .toggle.on{
   background:var(--green);
 }
 
-.toggle span{
-  display:block;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  background:#888;
-  margin:3px;
-}
-
 .toggle.on span{
   background:#071006;
-  transform:translateX(19px);
+  transform:translateX(20px);
 }
+
+/* CAMERA */
+
+.camera{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:#020302;
+  max-width:540px;
+  margin:auto;
+  overflow:hidden;
+}
+
+.camera video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.cameraShade{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(
+      rgba(0,0,0,.6),
+      transparent 25%,
+      transparent 65%,
+      rgba(0,0,0,.88)
+    );
+}
+
+.cameraTop{
+  position:absolute;
+  top:18px;
+  left:17px;
+  right:17px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cameraTop button{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.4);
+  color:white;
+}
+
+.cameraTitle{
+  font-size:9px;
+  letter-spacing:.17em;
+}
+
+.scan{
+  position:absolute;
+  top:25%;
+  left:11%;
+  right:11%;
+  height:35%;
+  border:1px solid rgba(168,255,77,.4);
+  border-radius:18px;
+}
+
+.corner{
+  position:absolute;
+  width:27px;
+  height:27px;
+  border-color:var(--green);
+}
+
+.c1{
+  top:-1px;
+  left:-1px;
+  border-top:2px solid;
+  border-left:2px solid;
+}
+
+.c2{
+  top:-1px;
+  right:-1px;
+  border-top:2px solid;
+  border-right:2px solid;
+}
+
+.c3{
+  bottom:-1px;
+  left:-1px;
+  border-bottom:2px solid;
+  border-left:2px solid;
+}
+
+.c4{
+  bottom:-1px;
+  right:-1px;
+  border-bottom:2px solid;
+  border-right:2px solid;
+}
+
+.scanLine{
+  position:absolute;
+  left:4%;
+  right:4%;
+  top:20%;
+  height:1px;
+  background:var(--green);
+  box-shadow:0 0 12px var(--green);
+  animation:scan 2.4s linear infinite;
+}
+
+@keyframes scan{
+  0%{top:8%}
+  50%{top:90%}
+  100%{top:8%}
+}
+
+.cameraBottom{
+  position:absolute;
+  bottom:28px;
+  left:18px;
+  right:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.cameraAction{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.46);
+  color:white;
+  border-radius:12px;
+  padding:11px 12px;
+  font-size:9px;
+  letter-spacing:.08em;
+}
+
+.shutter{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  border:5px solid rgba(255,255,255,.72);
+  background:var(--green);
+  color:#071006;
+  font-size:20px;
+}
+
+/* TOAST */
 
 .toast{
   position:fixed;
-  bottom:91px;
+  z-index:2000;
   left:50%;
+  bottom:92px;
   transform:translateX(-50%);
   background:#edf5ed;
-  color:#081007;
+  color:#071006;
   padding:10px 15px;
   border-radius:30px;
   font-size:11px;
-  font-weight:750;
-  z-index:200;
+  font-weight:800;
   white-space:nowrap;
+  box-shadow:0 12px 40px rgba(0,0,0,.35);
 }
 
-/* RESPONSIVE */
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:1500;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(10px);
+}
+
+.modalBox{
+  width:min(460px,100%);
+  background:#0c100d;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:20px;
+  box-shadow:0 25px 90px rgba(0,0,0,.55);
+}
+
+.modalBox h2{
+  font-size:21px;
+}
+
+.modalBox p{
+  margin-top:8px;
+  color:#7e8980;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.modalButtons{
+  display:flex;
+  gap:8px;
+  margin-top:17px;
+}
+
+.modalButtons button{
+  flex:1;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--surface2);
+  color:white;
+}
+
+.modalButtons .confirm{
+  background:var(--green);
+  color:#071006;
+  border:0;
+}
+
+/* BOTTOM NAV */
+
+.bottom{
+  position:fixed;
+  bottom:0;
+  width:min(540px,100%);
+  height:76px;
+  z-index:900;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  align-items:center;
+  border-top:1px solid var(--line);
+  background:rgba(7,9,7,.94);
+  backdrop-filter:blur(22px);
+}
+
+.nav{
+  border:0;
+  background:none;
+  color:#657067;
+  font-size:8px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+}
+
+.nav.active{
+  color:var(--green);
+}
+
+.navIcon{
+  font-size:18px;
+}
+
+.cameraButton{
+  width:54px;
+  height:54px;
+  justify-self:center;
+  border:0;
+  border-radius:17px;
+  background:var(--green);
+  color:#071006;
+  font-size:21px;
+  box-shadow:0 8px 35px rgba(168,255,77,.12);
+}
+
+/* DESKTOP */
 
 @media(min-width:700px){
-
   .phone{
     min-height:900px;
     margin:20px 0;
-    border-radius:32px;
     border:1px solid var(--line);
+    border-radius:32px;
   }
 
   .bottom{
@@ -690,51 +921,68 @@ button{
 
 <header class="header">
 
-  <div class="logo">
+  <div class="brand">
 
-    <div class="logoMark">E</div>
+    <div class="logo">E</div>
 
     <div>
-      <div class="logoText">ECHO</div>
-      <span class="logoSub">CONTEXT-AWARE</span>
+      <div class="brandName">ECHO</div>
+      <div class="brandSub">CONTEXT-AWARE AI</div>
     </div>
 
   </div>
 
-  <button class="mode" onclick="toggleDemo()">
-    <span id="modeDot">●</span>
-    <span id="modeText">DEMO</span>
+  <button class="status" onclick="toggleDemo()">
+    <span class="statusDot" id="statusDot"></span>
+    <span id="statusText">DEMO</span>
   </button>
 
 </header>
 
-
 <main class="content" id="content"></main>
-
 
 <nav class="bottom">
 
-  <button class="nav active" onclick="showPage('home')" id="navHome">
-    ◉
+  <button
+    class="nav active"
+    id="navHome"
+    onclick="showPage('home')"
+  >
+    <span class="navIcon">◉</span>
     <span>ECHO</span>
   </button>
 
-  <button class="nav" onclick="showPage('memory')" id="navMemory">
-    ◌
+  <button
+    class="nav"
+    id="navMemory"
+    onclick="showPage('memory')"
+  >
+    <span class="navIcon">◌</span>
     <span>MEMORY</span>
   </button>
 
-  <button class="cameraButton" onclick="openCamera()">
+  <button
+    class="cameraButton"
+    onclick="openCamera()"
+  >
     ◉
   </button>
 
-  <button class="nav" onclick="showPage('guide')" id="navGuide">
-    ◎
+  <button
+    class="nav"
+    id="navGuide"
+    onclick="showPage('guide')"
+  >
+    <span class="navIcon">◎</span>
     <span>GUIDE</span>
   </button>
 
-  <button class="nav" onclick="showPage('settings')" id="navSettings">
-    ⚙
+  <button
+    class="nav"
+    id="navSettings"
+    onclick="showPage('settings')"
+  >
+    <span class="navIcon">⚙</span>
     <span>MORE</span>
   </button>
 
@@ -743,40 +991,44 @@ button{
 </div>
 </div>
 
-
 <script>
 
-/* =========================================================
-   ECHO — CONTEXT AWARE AI COMPANION
-   Single-file hackathon prototype
-   ========================================================= */
+/* ============================================================
+   ECHO
+   SINGLE-FILE CONTEXT-AWARE AI COMPANION
+   ============================================================ */
 
 
-/* -----------------------------
+/* ============================================================
    STATE
------------------------------ */
+   ============================================================ */
 
-let demoMode = true;
+let demoMode =
+  localStorage.getItem("echo_demo") !== "false";
 
 let memories =
   JSON.parse(
     localStorage.getItem("echo_memories") || "[]"
   );
 
+let conversation =
+  JSON.parse(
+    localStorage.getItem("echo_conversation") || "[]"
+  );
+
 let selectedMemory = null;
+let currentLocation = null;
+let cameraStream = null;
+let facingMode = "environment";
 
-let locationData = null;
 
-let stream = null;
+/* ============================================================
+   DEMO DATA
+   ============================================================ */
 
+const DEMO_MEMORY = {
 
-/* -----------------------------
-   DEMO MEMORY
------------------------------ */
-
-const demoMemory = {
-
-  id:"demo-lab",
+  id:"demo-electronics-lab",
 
   title:"Electronics Laboratory",
 
@@ -789,32 +1041,127 @@ const demoMemory = {
   ocrText:
     "BLOCK B • ELECTRONICS LABORATORY",
 
-  latitude:13.0827,
+  latitude:11.4966,
 
-  longitude:80.2707,
+  longitude:77.2383,
 
   timestamp:new Date().toISOString(),
 
-  demo:true
+  demo:true,
+
+  tags:[
+    "college",
+    "electronics",
+    "laboratory"
+  ]
 
 };
 
 
-/* -----------------------------
-   INITIAL LOCATION
------------------------------ */
+/* ============================================================
+   INITIALIZATION
+   ============================================================ */
 
-if(navigator.geolocation){
+function init(){
+
+  updateStatus();
+
+  if(
+    !conversation.length
+  ){
+
+    conversation.push({
+
+      role:"echo",
+
+      text:
+        "Hi, I'm ECHO. I understand what you see, hear, remember and where you are. Try asking me something."
+
+    });
+
+    saveConversation();
+
+  }
+
+  requestLocation();
+
+  renderHome();
+
+}
+
+
+/* ============================================================
+   STORAGE
+   ============================================================ */
+
+function saveMemories(){
+
+  localStorage.setItem(
+    "echo_memories",
+    JSON.stringify(memories)
+  );
+
+}
+
+function saveConversation(){
+
+  localStorage.setItem(
+    "echo_conversation",
+    JSON.stringify(
+      conversation.slice(-50)
+    )
+  );
+
+}
+
+
+/* ============================================================
+   MEMORY ACCESS
+   ============================================================ */
+
+function getMemories(){
+
+  const list = [...memories];
+
+  if(
+    demoMode &&
+    !list.some(
+      m => m.id === DEMO_MEMORY.id
+    )
+  ){
+
+    list.unshift(DEMO_MEMORY);
+
+  }
+
+  return list;
+
+}
+
+
+/* ============================================================
+   LOCATION
+   ============================================================ */
+
+function requestLocation(){
+
+  if(!navigator.geolocation)
+    return;
 
   navigator.geolocation.getCurrentPosition(
 
     position => {
 
-      locationData = {
+      currentLocation = {
 
-        latitude:position.coords.latitude,
+        latitude:
+          position.coords.latitude,
 
-        longitude:position.coords.longitude
+        longitude:
+          position.coords.longitude,
+
+        accuracy:
+          position.coords.accuracy
 
       };
 
@@ -827,46 +1174,64 @@ if(navigator.geolocation){
 }
 
 
-/* -----------------------------
-   HELPERS
------------------------------ */
+/* ============================================================
+   STATUS
+   ============================================================ */
 
-function getMemories(){
+function updateStatus(){
 
-  let list = [...memories];
+  document.getElementById(
+    "statusText"
+  ).textContent =
+    demoMode ? "DEMO" : "LIVE";
 
-  if(
-    demoMode &&
-    !list.some(m => m.id === demoMemory.id)
-  ){
-
-    list.unshift(demoMemory);
-
-  }
-
-  return list;
+  document.getElementById(
+    "statusDot"
+  ).style.background =
+    demoMode
+    ? "var(--green)"
+    : "var(--yellow)";
 
 }
 
+function toggleDemo(){
 
-function saveMemories(){
+  demoMode = !demoMode;
 
   localStorage.setItem(
-    "echo_memories",
-    JSON.stringify(memories)
+    "echo_demo",
+    String(demoMode)
+  );
+
+  updateStatus();
+
+  toast(
+    demoMode
+    ? "Demo Mode enabled"
+    : "Live Mode enabled"
   );
 
 }
 
 
+/* ============================================================
+   TOAST
+   ============================================================ */
+
 function toast(message){
+
+  const old =
+    document.querySelector(".toast");
+
+  if(old)
+    old.remove();
 
   const element =
     document.createElement("div");
 
-  element.className="toast";
+  element.className = "toast";
 
-  element.textContent=message;
+  element.textContent = message;
 
   document.body.appendChild(element);
 
@@ -878,74 +1243,65 @@ function toast(message){
 }
 
 
+/* ============================================================
+   SPEECH OUTPUT
+   ============================================================ */
+
 function speak(text){
 
-  if("speechSynthesis" in window){
+  if(
+    !("speechSynthesis" in window)
+  )
+    return;
 
-    speechSynthesis.cancel();
+  speechSynthesis.cancel();
 
-    const utterance =
-      new SpeechSynthesisUtterance(text);
+  const utterance =
+    new SpeechSynthesisUtterance(text);
 
-    utterance.rate=.95;
+  utterance.lang = "en-IN";
+  utterance.rate = .95;
+  utterance.pitch = 1;
 
-    utterance.pitch=1;
-
-    speechSynthesis.speak(utterance);
-
-  }
-
-}
-
-
-/* -----------------------------
-   DEMO MODE
------------------------------ */
-
-function toggleDemo(){
-
-  demoMode=!demoMode;
-
-  document.getElementById("modeText").textContent =
-    demoMode ? "DEMO" : "LIVE";
-
-  document.getElementById("modeDot").style.color =
-    demoMode ? "#a8ff4d" : "#777";
-
-  toast(
-    demoMode
-      ? "Demo Mode enabled"
-      : "Live Mode enabled"
+  speechSynthesis.speak(
+    utterance
   );
 
 }
 
 
-/* -----------------------------
-   PAGE SYSTEM
------------------------------ */
+/* ============================================================
+   PAGE NAVIGATION
+   ============================================================ */
 
 function showPage(page){
 
   document
     .querySelectorAll(".nav")
-    .forEach(n => n.classList.remove("active"));
+    .forEach(
+      n =>
+        n.classList.remove("active")
+    );
 
-  if(page==="home")
-    document.getElementById("navHome")
+  const map = {
+
+    home:"navHome",
+
+    memory:"navMemory",
+
+    guide:"navGuide",
+
+    settings:"navSettings"
+
+  };
+
+  if(map[page]){
+
+    document
+      .getElementById(map[page])
       .classList.add("active");
 
-  if(page==="memory")
-    document.getElementById("navMemory")
-      .classList.add("active");
-
-  if(page==="guide")
-    document.getElementById("navGuide")
-      .classList.add("active");
-
-  if(page==="settings")
-    document.getElementById("navSettings")
-      .classList.add("active");
+  }
 
   if(page==="home")
     renderHome();
@@ -962,33 +1318,21 @@ function showPage(page){
 }
 
 
-/* -----------------------------
+/* ============================================================
    HOME
------------------------------ */
-
-let messages=[
-
-  {
-
-    role:"echo",
-
-    text:
-      "Hi, I’m ECHO. Ask me what you see, remember a place, or find something you saw earlier."
-
-  }
-
-];
-
+   ============================================================ */
 
 function renderHome(){
 
   const content =
-    document.getElementById("content");
+    document.getElementById(
+      "content"
+    );
 
   const recent =
     getMemories()[0];
 
-  content.innerHTML=`
+  content.innerHTML = `
 
     <section class="hero">
 
@@ -1011,7 +1355,7 @@ function renderHome(){
 
     <div class="orbArea">
 
-      <div class="orb">
+      <div class="orb" id="echoOrb">
 
         <div class="orbCore"></div>
 
@@ -1027,15 +1371,15 @@ function renderHome(){
     <div class="quick">
 
       <button onclick="openCamera()">
-        ◉ &nbsp; See
+        ◉ &nbsp; SEE
       </button>
 
       <button onclick="startVoice()">
-        ● &nbsp; Ask
+        ● &nbsp; ASK
       </button>
 
       <button onclick="rememberDemo()">
-        ◆ &nbsp; Remember
+        ◆ &nbsp; REMEMBER
       </button>
 
     </div>
@@ -1046,15 +1390,19 @@ function renderHome(){
     </div>
 
 
-    <div class="chat" id="chat">
+    <div class="chat">
 
-      ${messages
-        .slice(-5)
+      ${conversation
+        .slice(-8)
         .map(
-          m => `
-            <div class="message ${m.role}">
-              ${escapeHTML(m.text)}
+          message => `
+
+            <div
+              class="message ${message.role}"
+            >
+              ${escapeHTML(message.text)}
             </div>
+
           `
         )
         .join("")}
@@ -1069,8 +1417,8 @@ function renderHome(){
 
       <input
         id="messageInput"
-        placeholder="Ask ECHO about this moment…"
         autocomplete="off"
+        placeholder="Ask ECHO about this moment…"
       >
 
       <button
@@ -1082,8 +1430,8 @@ function renderHome(){
       </button>
 
       <button
-        class="send"
         type="submit"
+        class="send"
       >
         →
       </button>
@@ -1103,81 +1451,25 @@ function renderHome(){
 
       </div>
 
-
       ${
         recent
         ?
-
-        `
-        <button
-          class="memory"
-          style="width:100%;text-align:left;color:white"
-          onclick="openMemory('${recent.id}')"
-        >
-
-          <div class="memoryImage">
-
-            ${
-              recent.image
-              ?
-              `<img src="${recent.image}">`
-              :
-              "ECHO MEMORY"
-            }
-
-          </div>
-
-          <div class="memoryBody">
-
-            <div class="memoryTitle">
-
-              ${escapeHTML(recent.title)}
-
-              ${
-                recent.demo
-                ?
-                `<span class="demoTag">DEMO</span>`
-                :
-                ""
-              }
-
-            </div>
-
-            <div class="memoryDescription">
-
-              ${escapeHTML(recent.description)}
-
-            </div>
-
-            <div class="memoryMeta">
-
-              ${recent.latitude
-                ?
-                `LOCATION · ${recent.latitude.toFixed(4)}, ${recent.longitude.toFixed(4)}`
-                :
-                "LOCATION NOT CAPTURED"
-              }
-
-            </div>
-
-          </div>
-
-        </button>
-        `
-
+        memoryHTML(recent)
         :
-
         `
-        <div class="card">
+          <div class="card">
 
-          <p>
-            Save a place and ECHO will
-            carry that context forward.
-          </p>
+            <h2>
+              No memories yet
+            </h2>
 
-        </div>
+            <p>
+              Use ECHO Vision to save
+              your first context.
+            </p>
+
+          </div>
         `
-
       }
 
     </div>
@@ -1187,57 +1479,181 @@ function renderHome(){
 }
 
 
-/* -----------------------------
-   CHAT
------------------------------ */
+/* ============================================================
+   MEMORY HTML
+   ============================================================ */
 
-function sendMessage(event){
+function memoryHTML(memory){
 
-  event.preventDefault();
+  return `
 
-  const input =
-    document.getElementById("messageInput");
+    <div
+      class="memory"
+      onclick="openMemory('${memory.id}')"
+    >
 
-  const text=input.value.trim();
+      <div class="memoryImage">
 
-  if(!text) return;
+        ${
+          memory.image
+          ?
+          `<img src="${memory.image}" alt="">`
+          :
+          `ECHO MEMORY`
+        }
 
-  input.value="";
+      </div>
 
-  messages.push({
 
-    role:"user",
+      <div class="memoryBody">
 
-    text:text
+        <div class="memoryTitle">
 
-  });
+          ${escapeHTML(memory.title)}
 
-  const answer =
-    generateAnswer(text);
+          ${
+            memory.demo
+            ?
+            `<span class="tag">DEMO</span>`
+            :
+            ""
+          }
 
-  messages.push({
+        </div>
 
-    role:"echo",
 
-    text:answer
+        <div class="memoryDescription">
 
-  });
+          ${escapeHTML(
+            memory.description
+          )}
 
-  renderHome();
+        </div>
 
-  setTimeout(
-    () => speak(answer),
-    200
-  );
+
+        <div class="memoryMeta">
+
+          ${
+            memory.latitude
+            ?
+            `LOCATION ·
+             ${memory.latitude.toFixed(4)},
+             ${memory.longitude.toFixed(4)}`
+            :
+            "LOCATION · NOT CAPTURED"
+          }
+
+          <br>
+
+          SAVED ·
+          ${
+            new Date(
+              memory.timestamp
+            ).toLocaleString()
+          }
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
 
 }
 
 
-function generateAnswer(text){
+/* ============================================================
+   CHAT
+   ============================================================ */
 
-  const q=text.toLowerCase();
+async function sendMessage(event){
 
-  const list=getMemories();
+  event.preventDefault();
+
+  const input =
+    document.getElementById(
+      "messageInput"
+    );
+
+  const text =
+    input.value.trim();
+
+  if(!text)
+    return;
+
+  input.value = "";
+
+  addMessage(
+    "user",
+    text
+  );
+
+  const orb =
+    document.getElementById(
+      "echoOrb"
+    );
+
+  if(orb)
+    orb.classList.add("thinking");
+
+  const answer =
+    await generateAnswer(text);
+
+  addMessage(
+    "echo",
+    answer
+  );
+
+  if(orb)
+    orb.classList.remove("thinking");
+
+  speak(answer);
+
+}
+
+
+/* ============================================================
+   ADD MESSAGE
+   ============================================================ */
+
+function addMessage(
+  role,
+  text
+){
+
+  conversation.push({
+
+    role:role,
+
+    text:text,
+
+    timestamp:
+      new Date().toISOString()
+
+  });
+
+  saveConversation();
+
+  renderHome();
+
+}
+
+
+/* ============================================================
+   CONTEXT ENGINE
+   ============================================================ */
+
+async function generateAnswer(text){
+
+  const q =
+    text.toLowerCase();
+
+  const list =
+    getMemories();
+
+
+  /* WHERE / LAB */
 
   if(
     q.includes("where") &&
@@ -1247,89 +1663,189 @@ function generateAnswer(text){
     )
   ){
 
-    selectedMemory =
+    const memory =
       list.find(
         m =>
           m.title
             .toLowerCase()
             .includes("electronics")
-      ) || list[0];
+      );
 
-    return selectedMemory
-      ?
-      `You saved the ${selectedMemory.title} in ${selectedMemory.description}. I can use that saved context to guide you there.`
-      :
-      "I don't have a saved laboratory memory yet.";
+    if(memory){
+
+      selectedMemory =
+        memory;
+
+      return `
+        You saved the Electronics Laboratory
+        in Block B. I have its saved context
+        and location. You can open Guide Me
+        to navigate there.
+      `;
+
+    }
 
   }
 
+
+  /* REMEMBER */
 
   if(
     q.includes("remember") ||
-    q.includes("save")
+    q.includes("save this") ||
+    q.includes("save it")
   ){
 
-    return "I can remember this moment. Use the Remember action to save the current visual context.";
+    return `
+      Absolutely. Open ECHO Vision and tap
+      Remember. I'll store the visual context,
+      time and available location.
+    `;
 
   }
 
 
+  /* CAMERA */
+
   if(
-    q.includes("what") ||
-    q.includes("front") ||
-    q.includes("looking")
+    q.includes("see") ||
+    q.includes("looking") ||
+    q.includes("what is this") ||
+    q.includes("what's this") ||
+    q.includes("front of me")
   ){
 
     if(demoMode){
 
-      return "I can see a college building entrance. In Demo Mode, this is Block B, where the Electronics Laboratory is located.";
+      return `
+        I can see a college building entrance.
+        In the demonstration context, this is
+        Block B — Electronics Laboratory.
+      `;
 
     }
 
-    return "Open ECHO Vision and point your camera at the scene. I’ll analyze the current visual context.";
+    return `
+      Open ECHO Vision and point your camera
+      at the scene. I'll use the captured
+      context to answer.
+    `;
 
   }
 
 
-  if(
-    q.includes("guide") ||
-    q.includes("direction")
-  ){
-
-    return "Open Guide to use the location saved with your selected ECHO memory.";
-
-  }
-
+  /* TEXT */
 
   if(
     q.includes("read") ||
-    q.includes("text")
+    q.includes("text") ||
+    q.includes("sign")
   ){
 
-    return "Open ECHO Vision and choose Read to inspect visible text.";
+    return `
+      Open ECHO Vision and choose READ.
+      In Demo Mode I can recognize the
+      Electronics Laboratory sign.
+    `;
 
   }
 
 
-  return "I’m ECHO. I connect what you say, see, remember and where you are so context can carry forward between interactions.";
+  /* GUIDE */
+
+  if(
+    q.includes("guide") ||
+    q.includes("direction") ||
+    q.includes("navigate")
+  ){
+
+    return `
+      Open Guide. ECHO will use the location
+      attached to your selected memory.
+    `;
+
+  }
+
+
+  /* MEMORY */
+
+  if(
+    q.includes("memory") ||
+    q.includes("memories") ||
+    q.includes("earlier") ||
+    q.includes("before")
+  ){
+
+    if(list.length){
+
+      return `
+        You currently have
+        ${list.length}
+        available context memories.
+        Open Memory to explore them.
+      `;
+
+    }
+
+    return `
+      You don't have any saved memories yet.
+    `;
+
+  }
+
+
+  /* LOCATION */
+
+  if(
+    q.includes("location") ||
+    q.includes("where am i")
+  ){
+
+    if(currentLocation){
+
+      return `
+        I have access to your current browser
+        location. Your coordinates are
+        ${currentLocation.latitude.toFixed(4)},
+        ${currentLocation.longitude.toFixed(4)}.
+      `;
+
+    }
+
+    return `
+      Location isn't available yet. Please
+      allow location permission in your browser.
+    `;
+
+  }
+
+
+  /* DEFAULT */
+
+  return `
+    I'm ECHO — your context-aware companion.
+    I can help you understand what you see,
+    remember places and moments, use location
+    context and guide you back to saved places.
+  `;
 
 }
 
 
-/* -----------------------------
-   VOICE
------------------------------ */
+/* ============================================================
+   VOICE INPUT
+   ============================================================ */
 
 function startVoice(){
 
-  const SpeechRecognition =
+  const Recognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition;
 
-  if(!SpeechRecognition){
+  if(!Recognition){
 
     toast(
-      "Voice recognition isn't supported here. Type your request instead."
+      "Voice recognition is not supported here."
     );
 
     return;
@@ -1337,75 +1853,96 @@ function startVoice(){
   }
 
   const recognition =
-    new SpeechRecognition();
+    new Recognition();
 
-  recognition.lang="en-IN";
+  recognition.lang =
+    "en-IN";
 
-  recognition.interimResults=false;
+  recognition.interimResults =
+    false;
 
-  recognition.onstart=()=>{
+  recognition.maxAlternatives =
+    1;
+
+
+  recognition.onstart = () => {
+
+    const orb =
+      document.getElementById(
+        "echoOrb"
+      );
+
+    if(orb)
+      orb.classList.add("listening");
 
     toast("Listening…");
 
   };
 
-  recognition.onerror=()=>{
 
-    toast("I couldn't hear that. Try again.");
+  recognition.onend = () => {
+
+    const orb =
+      document.getElementById(
+        "echoOrb"
+      );
+
+    if(orb)
+      orb.classList.remove("listening");
 
   };
 
-  recognition.onresult=e=>{
+
+  recognition.onerror = () => {
+
+    toast(
+      "I couldn't hear that. Try again."
+    );
+
+  };
+
+
+  recognition.onresult = event => {
 
     const text =
-      e.results[0][0].transcript;
+      event.results[0][0].transcript;
 
     const input =
-      document.getElementById("messageInput");
+      document.getElementById(
+        "messageInput"
+      );
 
     if(input){
 
-      input.value=text;
+      input.value = text;
 
       sendMessage(
         new Event("submit")
       );
 
-    }else{
-
-      messages.push({
-        role:"user",
-        text:text
-      });
-
-      messages.push({
-        role:"echo",
-        text:generateAnswer(text)
-      });
-
-      renderHome();
-
     }
 
   };
+
 
   recognition.start();
 
 }
 
 
-/* -----------------------------
+/* ============================================================
    CAMERA
------------------------------ */
+   ============================================================ */
 
 async function openCamera(){
 
   const camera =
     document.createElement("div");
 
-  camera.className="camera";
+  camera.className =
+    "camera";
 
-  camera.innerHTML=`
+  camera.innerHTML = `
 
     <video
       id="cameraVideo"
@@ -1413,7 +1950,8 @@ async function openCamera(){
       playsinline
     ></video>
 
-    <div class="cameraOverlay"></div>
+    <div class="cameraShade"></div>
+
 
     <div class="cameraTop">
 
@@ -1434,6 +1972,8 @@ async function openCamera(){
 
     <div class="scan">
 
+      <div class="scanLine"></div>
+
       <span class="corner c1"></span>
       <span class="corner c2"></span>
       <span class="corner c3"></span>
@@ -1451,12 +1991,14 @@ async function openCamera(){
         REMEMBER
       </button>
 
+
       <button
         class="shutter"
         onclick="analyzeCamera()"
       >
         ◉
       </button>
+
 
       <button
         class="cameraAction"
@@ -1471,77 +2013,133 @@ async function openCamera(){
 
   document.body.appendChild(camera);
 
+
+  if(
+    !navigator.mediaDevices ||
+    !navigator.mediaDevices.getUserMedia
+  ){
+
+    showCameraFallback();
+
+    return;
+
+  }
+
+
   try{
 
-    stream =
+    cameraStream =
       await navigator.mediaDevices.getUserMedia({
 
         video:{
-          facingMode:"environment"
+          facingMode:facingMode
         },
 
         audio:false
 
       });
 
-    document
-      .getElementById("cameraVideo")
-      .srcObject=stream;
-
-  }catch(error){
 
     const video =
-      document.getElementById("cameraVideo");
+      document.getElementById(
+        "cameraVideo"
+      );
 
-    video.style.display="none";
+    video.srcObject =
+      cameraStream;
 
-    camera.insertAdjacentHTML(
-      "beforeend",
+  }
 
-      `
-      <div style="
-        position:absolute;
-        top:42%;
-        left:25px;
-        right:25px;
-        text-align:center;
-        color:white;
-        line-height:1.5;
-        font-size:13px;
-      ">
+  catch(error){
 
-        Camera permission wasn't available.
-
-        <br><br>
-
-        <strong style="color:#a8ff4d">
-          Demo Mode still works.
-        </strong>
-
-      </div>
-      `
-
-    );
+    showCameraFallback();
 
   }
 
 }
 
 
+/* ============================================================
+   CAMERA FALLBACK
+   ============================================================ */
+
+function showCameraFallback(){
+
+  const video =
+    document.getElementById(
+      "cameraVideo"
+    );
+
+  if(video)
+    video.style.display="none";
+
+  const camera =
+    document.querySelector(
+      ".camera"
+    );
+
+  if(!camera)
+    return;
+
+  camera.insertAdjacentHTML(
+
+    "beforeend",
+
+    `
+
+      <div style="
+        position:absolute;
+        top:40%;
+        left:25px;
+        right:25px;
+        text-align:center;
+        color:white;
+        line-height:1.6;
+        font-size:13px;
+      ">
+
+        Camera permission isn't available.
+
+        <br><br>
+
+        <strong style="
+          color:#a8ff4d
+        ">
+          Demo Mode is still available.
+        </strong>
+
+      </div>
+
+    `
+
+  );
+
+}
+
+
+/* ============================================================
+   CLOSE CAMERA
+   ============================================================ */
+
 function closeCamera(){
 
-  if(stream){
+  if(cameraStream){
 
-    stream
+    cameraStream
       .getTracks()
-      .forEach(track=>track.stop());
+      .forEach(
+        track =>
+          track.stop()
+      );
 
-    stream=null;
+    cameraStream=null;
 
   }
 
   const camera =
-    document.querySelector(".camera");
+    document.querySelector(
+      ".camera"
+    );
 
   if(camera)
     camera.remove();
@@ -1549,19 +2147,36 @@ function closeCamera(){
 }
 
 
-function switchCamera(){
+/* ============================================================
+   SWITCH CAMERA
+   ============================================================ */
 
-  toast(
-    "Camera switching is available through browser/device controls."
-  );
+async function switchCamera(){
+
+  facingMode =
+    facingMode === "environment"
+    ?
+    "user"
+    :
+    "environment";
+
+  closeCamera();
+
+  await openCamera();
 
 }
 
 
+/* ============================================================
+   CAPTURE FRAME
+   ============================================================ */
+
 function captureFrame(){
 
   const video =
-    document.getElementById("cameraVideo");
+    document.getElementById(
+      "cameraVideo"
+    );
 
   if(
     !video ||
@@ -1569,8 +2184,11 @@ function captureFrame(){
   )
     return null;
 
+
   const canvas =
-    document.createElement("canvas");
+    document.createElement(
+      "canvas"
+    );
 
   const scale =
     Math.min(
@@ -1579,32 +2197,43 @@ function captureFrame(){
     );
 
   canvas.width =
-    video.videoWidth * scale;
+    Math.round(
+      video.videoWidth * scale
+    );
 
   canvas.height =
-    video.videoHeight * scale;
-
-  canvas
-    .getContext("2d")
-    .drawImage(
-      video,
-      0,
-      0,
-      canvas.width,
-      canvas.height
+    Math.round(
+      video.videoHeight * scale
     );
+
+
+  const ctx =
+    canvas.getContext("2d");
+
+  ctx.drawImage(
+
+    video,
+
+    0,
+    0,
+
+    canvas.width,
+    canvas.height
+
+  );
+
 
   return canvas.toDataURL(
     "image/jpeg",
-    .8
+    .82
   );
 
 }
 
 
-/* -----------------------------
-   CAMERA ANALYSIS
------------------------------ */
+/* ============================================================
+   ANALYZE CAMERA
+   ============================================================ */
 
 function analyzeCamera(){
 
@@ -1613,46 +2242,59 @@ function analyzeCamera(){
 
   closeCamera();
 
-  messages.push({
 
-    role:"echo",
+  let answer;
 
-    text:
-      demoMode
-      ?
-      "I can see a college building entrance. In Demo Mode, this is Block B, where the Electronics Laboratory is located."
-      :
-      "The image was captured. Connect an AI vision provider to perform live image understanding."
+  if(demoMode){
 
-  });
+    answer =
+      "I can see a college building entrance. The demonstration context identifies it as Block B — Electronics Laboratory.";
 
-  renderHome();
+  }
+
+  else{
+
+    answer =
+      "I've captured the scene. To perform live AI vision analysis, connect ECHO to your secure AI endpoint.";
+
+  }
+
+
+  addMessage(
+    "echo",
+    answer
+  );
+
+  speak(answer);
+
 
   if(image){
 
-    selectedMemory={
+    selectedMemory = {
 
-      ...demoMemory,
+      ...DEMO_MEMORY,
+
+      id:
+        "capture-" +
+        Date.now(),
 
       image:image,
 
-      demo:false
+      demo:false,
+
+      timestamp:
+        new Date().toISOString()
 
     };
 
   }
 
-  speak(
-    demoMode
-    ?
-    "I can see a college building entrance. This is Block B, where the Electronics Laboratory is located."
-    :
-    "The image was captured."
-
-  );
-
 }
 
+
+/* ============================================================
+   READ CAMERA
+   ============================================================ */
 
 function readCamera(){
 
@@ -1661,27 +2303,54 @@ function readCamera(){
 
   closeCamera();
 
+
   const answer =
     demoMode
+
     ?
-    "I can read: BLOCK B — ELECTRONICS LABORATORY."
+
+    "I can read the visible sign: BLOCK B — ELECTRONICS LABORATORY."
+
     :
-    "The image was captured. Connect an AI vision provider to perform live OCR.";
 
-  messages.push({
+    "I've captured the image. Connect ECHO to an AI vision endpoint for live OCR.";
 
-    role:"echo",
 
-    text:answer
-
-  });
-
-  renderHome();
+  addMessage(
+    "echo",
+    answer
+  );
 
   speak(answer);
 
+
+  if(image){
+
+    selectedMemory = {
+
+      ...DEMO_MEMORY,
+
+      id:
+        "read-" +
+        Date.now(),
+
+      image:image,
+
+      demo:false,
+
+      timestamp:
+        new Date().toISOString()
+
+    };
+
+  }
+
 }
 
+
+/* ============================================================
+   REMEMBER CAMERA FRAME
+   ============================================================ */
 
 function rememberCameraFrame(){
 
@@ -1690,27 +2359,31 @@ function rememberCameraFrame(){
 
   closeCamera();
 
+
   createMemory(
 
     image,
 
     demoMode
     ?
-    demoMemory
+    DEMO_MEMORY
     :
     {
 
-      title:"Saved visual moment",
+      title:
+        "Saved visual moment",
 
       description:
-        "A visual context saved from ECHO Vision.",
+        "A visual context captured with ECHO Vision.",
 
       visualContext:
         "Camera frame captured by the user.",
 
       ocrText:"",
 
-      tags:["visual-memory"]
+      tags:[
+        "visual-memory"
+      ]
 
     }
 
@@ -1719,26 +2392,30 @@ function rememberCameraFrame(){
 }
 
 
-/* -----------------------------
-   REMEMBER
------------------------------ */
+/* ============================================================
+   REMEMBER DEMO
+   ============================================================ */
 
 function rememberDemo(){
 
   createMemory(
-
     null,
-
-    demoMemory
-
+    DEMO_MEMORY
   );
 
 }
 
 
-function createMemory(image,data){
+/* ============================================================
+   CREATE MEMORY
+   ============================================================ */
 
-  const memory={
+function createMemory(
+  image,
+  data
+){
+
+  const memory = {
 
     id:
       "memory-" +
@@ -1750,7 +2427,7 @@ function createMemory(image,data){
 
     description:
       data.description ||
-      "A place or visual context saved with ECHO.",
+      "A context saved by ECHO.",
 
     visualContext:
       data.visualContext ||
@@ -1765,15 +2442,19 @@ function createMemory(image,data){
       ["saved"],
 
     latitude:
-      locationData
-      ?.latitude ||
-      data.latitude ||
+      currentLocation
+      ?.latitude
+      ??
+      data.latitude
+      ??
       null,
 
     longitude:
-      locationData
-      ?.longitude ||
-      data.longitude ||
+      currentLocation
+      ?.longitude
+      ??
+      data.longitude
+      ??
       null,
 
     timestamp:
@@ -1785,17 +2466,22 @@ function createMemory(image,data){
       null,
 
     demo:
-      data===demoMemory
+      data === DEMO_MEMORY
 
   };
 
-  memories.unshift(memory);
 
-  memories=memories.slice(0,30);
+  memories.unshift(
+    memory
+  );
+
+  memories =
+    memories.slice(0,30);
 
   saveMemories();
 
-  selectedMemory=memory;
+  selectedMemory =
+    memory;
 
   toast(
     "Saved to ECHO memory"
@@ -1806,19 +2492,22 @@ function createMemory(image,data){
 }
 
 
-/* -----------------------------
-   MEMORY
------------------------------ */
+/* ============================================================
+   MEMORY PAGE
+   ============================================================ */
 
 function renderMemory(){
 
   const content =
-    document.getElementById("content");
+    document.getElementById(
+      "content"
+    );
 
   const list =
     getMemories();
 
-  content.innerHTML=`
+
+  content.innerHTML = `
 
     <div class="eyebrow">
       CONTEXT STORAGE
@@ -1833,93 +2522,37 @@ function renderMemory(){
       ECHO can carry forward.
     </p>
 
+
     ${
       list.length
 
       ?
 
-      list.map(
-        memory => `
-
-        <div
-          class="memory"
-          onclick="openMemory('${memory.id}')"
-        >
-
-          <div class="memoryImage">
-
-            ${
-              memory.image
-              ?
-              `<img src="${memory.image}">`
-              :
-              "ECHO MEMORY"
-            }
-
-          </div>
-
-          <div class="memoryBody">
-
-            <div class="memoryTitle">
-
-              ${escapeHTML(memory.title)}
-
-              ${
-                memory.demo
-                ?
-                `<span class="demoTag">DEMO</span>`
-                :
-                ""
-              }
-
-            </div>
-
-            <div class="memoryDescription">
-
-              ${escapeHTML(memory.description)}
-
-            </div>
-
-            <div class="memoryMeta">
-
-              ${memory.latitude
-                ?
-                `LOCATION · ${memory.latitude.toFixed(4)}, ${memory.longitude.toFixed(4)}`
-                :
-                "LOCATION NOT CAPTURED"
-              }
-
-              <br>
-
-              SAVED ·
-              ${new Date(memory.timestamp).toLocaleString()}
-
-            </div>
-
-          </div>
-
-        </div>
-
-        `
-      ).join("")
+      list
+        .map(
+          memory =>
+            memoryHTML(memory)
+        )
+        .join("")
 
       :
 
       `
 
-      <div class="card">
+        <div class="card">
 
-        <h2>No memories yet</h2>
+          <h2>
+            No memories yet
+          </h2>
 
-        <p>
-          Use ECHO Vision or the Remember
-          action to save your first context.
-        </p>
+          <p>
+            Use ECHO Vision or Remember
+            to save your first context.
+          </p>
 
-      </div>
+        </div>
 
       `
-
     }
 
   `;
@@ -1927,9 +2560,9 @@ function renderMemory(){
 }
 
 
-/* -----------------------------
+/* ============================================================
    MEMORY DETAIL
------------------------------ */
+   ============================================================ */
 
 function openMemory(id){
 
@@ -1937,12 +2570,14 @@ function openMemory(id){
     getMemories()
       .find(
         memory =>
-          memory.id===id
+          memory.id === id
       );
 
   if(!selectedMemory){
 
-    toast("Memory not found");
+    toast(
+      "Memory not found"
+    );
 
     return;
 
@@ -1955,12 +2590,16 @@ function openMemory(id){
 
 function renderMemoryDetail(){
 
-  const m=selectedMemory;
+  const m =
+    selectedMemory;
 
   const content =
-    document.getElementById("content");
+    document.getElementById(
+      "content"
+    );
 
-  content.innerHTML=`
+
+  content.innerHTML = `
 
     <button
       onclick="showPage('memory')"
@@ -1968,8 +2607,8 @@ function renderMemoryDetail(){
         border:0;
         background:none;
         color:#a8ff4d;
-        font-size:12px;
-        margin-bottom:15px;
+        font-size:11px;
+        margin-bottom:16px;
       "
     >
       ← ALL MEMORIES
@@ -1978,15 +2617,17 @@ function renderMemoryDetail(){
 
     <div class="memory">
 
-      <div class="memoryImage"
-           style="height:230px">
+      <div
+        class="memoryImage"
+        style="height:240px"
+      >
 
         ${
           m.image
           ?
-          `<img src="${m.image}">`
+          `<img src="${m.image}" alt="">`
           :
-          "ECHO MEMORY"
+          `ECHO MEMORY`
         }
 
       </div>
@@ -1998,52 +2639,67 @@ function renderMemoryDetail(){
           ${escapeHTML(m.title)}
         </div>
 
+
         <div class="memoryDescription">
-
           ${escapeHTML(m.description)}
-
         </div>
 
 
         ${
           m.ocrText
-          ?
-          `
-          <div class="card">
 
-            <div class="eyebrow">
-              VISIBLE TEXT
+          ?
+
+          `
+
+            <div class="card">
+
+              <div class="eyebrow">
+                VISIBLE TEXT
+              </div>
+
+              <p>
+                ${escapeHTML(m.ocrText)}
+              </p>
+
             </div>
 
-            <p>
-              ${escapeHTML(m.ocrText)}
-            </p>
-
-          </div>
           `
+
           :
+
           ""
+
         }
 
 
         ${
           m.visualContext
-          ?
-          `
-          <div class="card">
 
-            <div class="eyebrow">
-              VISUAL CONTEXT
+          ?
+
+          `
+
+            <div class="card">
+
+              <div class="eyebrow">
+                VISUAL CONTEXT
+              </div>
+
+              <p>
+                ${escapeHTML(
+                  m.visualContext
+                )}
+              </p>
+
             </div>
 
-            <p>
-              ${escapeHTML(m.visualContext)}
-            </p>
-
-          </div>
           `
+
           :
+
           ""
+
         }
 
 
@@ -2051,17 +2707,28 @@ function renderMemoryDetail(){
 
           ${
             m.latitude
+
             ?
-            `
-            SAVED LOCATION
 
-            <br>
-
-            ${m.latitude.toFixed(5)},
-            ${m.longitude.toFixed(5)}
             `
+
+              SAVED LOCATION<br>
+
+              <strong style="
+                color:#dce4dd
+              ">
+
+                ${m.latitude.toFixed(5)},
+                ${m.longitude.toFixed(5)}
+
+              </strong>
+
+            `
+
             :
+
             "LOCATION NOT CAPTURED"
+
           }
 
         </div>
@@ -2076,16 +2743,8 @@ function renderMemoryDetail(){
 
 
         <button
+          class="secondary"
           onclick="deleteMemory('${m.id}')"
-          style="
-            width:100%;
-            margin-top:8px;
-            padding:11px;
-            background:transparent;
-            border:0;
-            color:#a87979;
-            font-size:10px;
-          "
         >
           DELETE MEMORY
         </button>
@@ -2099,15 +2758,16 @@ function renderMemoryDetail(){
 }
 
 
-/* -----------------------------
+/* ============================================================
    DELETE MEMORY
------------------------------ */
+   ============================================================ */
 
 function deleteMemory(id){
 
   memories =
     memories.filter(
-      m => m.id!==id
+      memory =>
+        memory.id !== id
     );
 
   saveMemories();
@@ -2123,22 +2783,25 @@ function deleteMemory(id){
 }
 
 
-/* -----------------------------
-   GUIDE
------------------------------ */
+/* ============================================================
+   GUIDE PAGE
+   ============================================================ */
 
 function renderGuide(){
 
   const content =
-    document.getElementById("content");
+    document.getElementById(
+      "content"
+    );
 
   const memory =
     selectedMemory ||
     getMemories()[0];
 
+
   if(!memory){
 
-    content.innerHTML=`
+    content.innerHTML = `
 
       <div class="card">
 
@@ -2161,23 +2824,38 @@ function renderGuide(){
 
 
   const hasCoordinates =
+
     Number.isFinite(
-      memory.latitude
-    ) &&
+      Number(memory.latitude)
+    )
+
+    &&
+
     Number.isFinite(
-      memory.longitude
+      Number(memory.longitude)
     );
 
 
-  const mapsUrl =
+  const mapsURL =
+
     hasCoordinates
+
     ?
-    `https://www.google.com/maps/dir/?api=1&destination=${memory.latitude},${memory.longitude}`
+
+    "https://www.google.com/maps/dir/?api=1" +
+    "&destination=" +
+    encodeURIComponent(
+      memory.latitude +
+      "," +
+      memory.longitude
+    )
+
     :
+
     "#";
 
 
-  content.innerHTML=`
+  content.innerHTML = `
 
     <div class="eyebrow">
       CONTEXTUAL GUIDANCE
@@ -2199,6 +2877,7 @@ function renderGuide(){
 
         <div class="radarCircle r1"></div>
         <div class="radarCircle r2"></div>
+        <div class="radarCircle r3"></div>
 
         <div class="radarDot"></div>
 
@@ -2212,14 +2891,18 @@ function renderGuide(){
 
       <h2 style="margin-top:7px">
 
-        ${escapeHTML(memory.title)}
+        ${escapeHTML(
+          memory.title
+        )}
 
       </h2>
 
 
       <p>
 
-        ${escapeHTML(memory.description)}
+        ${escapeHTML(
+          memory.description
+        )}
 
       </p>
 
@@ -2230,49 +2913,59 @@ function renderGuide(){
         ?
 
         `
-        <p style="margin-top:15px">
 
-          SAVED LOCATION
+          <p style="margin-top:15px">
 
-          <br>
+            SAVED LOCATION
 
-          <strong style="color:#dce3dd">
+            <br>
 
-            ${memory.latitude.toFixed(5)},
-            ${memory.longitude.toFixed(5)}
+            <strong style="
+              color:#dce4dd
+            ">
 
-          </strong>
+              ${Number(
+                memory.latitude
+              ).toFixed(5)},
 
-        </p>
+              ${Number(
+                memory.longitude
+              ).toFixed(5)}
+
+            </strong>
+
+          </p>
 
 
-        <a
-          class="primary"
-          href="${mapsUrl}"
-          target="_blank"
-          style="
-            display:block;
-            text-align:center;
-            text-decoration:none;
-          "
-        >
-          OPEN DIRECTIONS →
-        </a>
+          <a
+            class="primary"
+            href="${mapsURL}"
+            target="_blank"
+            rel="noopener"
+            style="
+              display:block;
+              text-align:center;
+              text-decoration:none;
+            "
+          >
+            OPEN DIRECTIONS →
+          </a>
 
         `
 
         :
 
         `
-        <div class="card">
 
-          <p>
-            Location wasn't captured for
-            this memory. Enable location
-            permission and save the place again.
-          </p>
+          <div class="card">
 
-        </div>
+            <p>
+              This memory does not contain
+              a usable location.
+            </p>
+
+          </div>
+
         `
 
       }
@@ -2284,16 +2977,19 @@ function renderGuide(){
 }
 
 
-/* -----------------------------
+/* ============================================================
    SETTINGS
------------------------------ */
+   ============================================================ */
 
 function renderSettings(){
 
   const content =
-    document.getElementById("content");
+    document.getElementById(
+      "content"
+    );
 
-  content.innerHTML=`
+
+  content.innerHTML = `
 
     <div class="eyebrow">
       SYSTEM
@@ -2304,31 +3000,35 @@ function renderSettings(){
     </h1>
 
     <p class="pageDescription">
-      Prototype controls and privacy.
+      Prototype controls, permissions
+      and privacy.
     </p>
 
 
     <div class="card">
 
+
       <div class="setting">
 
         <button
-          class="toggle ${demoMode ? "on":""}"
-          onclick="toggleDemo()"
+          class="toggle ${
+            demoMode ? "on" : ""
+          }"
+          onclick="toggleDemo();renderSettings()"
         >
 
           <span></span>
 
         </button>
 
+
         <strong>
           Demo Mode
         </strong>
 
         <p>
-          Uses a controlled Electronics
-          Laboratory scenario for reliable
-          hackathon demonstration.
+          Uses a reliable Electronics
+          Laboratory demonstration scenario.
         </p>
 
       </div>
@@ -2351,12 +3051,26 @@ function renderSettings(){
       <div class="setting">
 
         <strong>
+          Microphone
+        </strong>
+
+        <p>
+          Used only when you activate
+          voice input.
+        </p>
+
+      </div>
+
+
+      <div class="setting">
+
+        <strong>
           Location
         </strong>
 
         <p>
-          Used to attach a place to a
-          saved memory.
+          Used to attach places to
+          saved memories.
         </p>
 
       </div>
@@ -2369,26 +3083,29 @@ function renderSettings(){
         </strong>
 
         <p>
-          ${memories.length}
-          saved memories on this browser.
+          ${
+            memories.length
+          }
+          saved memories stored
+          in this browser.
         </p>
 
       </div>
 
 
       <button
+        class="secondary"
         onclick="clearMemories()"
-        style="
-          width:100%;
-          margin-top:15px;
-          padding:12px;
-          border:0;
-          background:transparent;
-          color:#c28c8c;
-          font-size:10px;
-        "
       >
         CLEAR LOCAL MEMORIES
+      </button>
+
+
+      <button
+        class="secondary"
+        onclick="clearConversation()"
+      >
+        CLEAR CONVERSATION
       </button>
 
     </div>
@@ -2401,10 +3118,27 @@ function renderSettings(){
       </div>
 
       <p>
-        ECHO requests camera, microphone
-        and location only when needed.
-        Prototype memories are stored
-        locally in the browser.
+        ECHO requests camera,
+        microphone and location only
+        when needed. Prototype memories
+        are stored locally in the browser.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="eyebrow">
+        AI CONNECTION
+      </div>
+
+      <p>
+        This standalone build works in
+        Demo Mode without an API key.
+        For production AI, connect a
+        secure backend endpoint rather
+        than exposing an API key here.
       </p>
 
     </div>
@@ -2414,11 +3148,18 @@ function renderSettings(){
 }
 
 
-/* -----------------------------
-   CLEAR
------------------------------ */
+/* ============================================================
+   CLEAR MEMORY
+   ============================================================ */
 
 function clearMemories(){
+
+  if(
+    !confirm(
+      "Delete all saved ECHO memories?"
+    )
+  )
+    return;
 
   memories=[];
 
@@ -2429,7 +3170,7 @@ function clearMemories(){
   selectedMemory=null;
 
   toast(
-    "Local memories cleared"
+    "Memories cleared"
   );
 
   renderSettings();
@@ -2437,27 +3178,82 @@ function clearMemories(){
 }
 
 
-/* -----------------------------
-   ESCAPE HTML
------------------------------ */
+/* ============================================================
+   CLEAR CONVERSATION
+   ============================================================ */
 
-function escapeHTML(value){
+function clearConversation(){
 
-  return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+  if(
+    !confirm(
+      "Clear the ECHO conversation?"
+    )
+  )
+    return;
+
+  conversation=[];
+
+  conversation.push({
+
+    role:"echo",
+
+    text:
+      "Conversation cleared. I'm ready."
+
+  });
+
+  saveConversation();
+
+  toast(
+    "Conversation cleared"
+  );
+
+  renderHome();
 
 }
 
 
-/* -----------------------------
-   START
------------------------------ */
+/* ============================================================
+   ESCAPE HTML
+   ============================================================ */
 
-renderHome();
+function escapeHTML(value){
+
+  return String(value)
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+/* ============================================================
+   START
+   ============================================================ */
+
+init();
 
 </script>
 
